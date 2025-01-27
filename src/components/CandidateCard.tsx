@@ -3,8 +3,8 @@ import { Candidate } from '../interfaces/CandidateInterface';
 
 const CandidateCard: React.FC<{ candidate: Candidate }> = ({ candidate }) => {
   return (
-    <div className="p-4 border rounded-lg shadow-md w-full max-w-md mb-4 bg-white">
-      <img src={candidate.avatar_url} alt="Avatar" className="w-16 h-16 rounded-full mb-2" />
+    <div>
+      <img src={candidate.avatar_url} alt="Avatar" />
       <p><strong>Name:</strong> {candidate.name}</p>
       <p><strong>Username:</strong> {candidate.login}</p>
       <p><strong>Location:</strong> {candidate.location}</p>

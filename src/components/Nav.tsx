@@ -3,18 +3,18 @@ import { Link } from 'react-router-dom';
 
 const Nav: React.FC = () => {
   return (
-    <nav className="flex justify-between items-center p-4 bg-gray-800 text-white">
-      <div className="text-xl font-bold">
+    <nav>
+      <div>
         <Link to="/">Home</Link>
       </div>
-      <ul className="flex space-x-4">
+      <ul>
         <li>
-          <Link to="/candidates" className="hover:underline">
+          <Link to="/candidates">
             Candidates
           </Link>
         </li>
         <li>
-          <Link to="/saved" className="hover:underline">
+          <Link to="/saved">
             Saved Candidates
           </Link>
         </li>

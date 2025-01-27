@@ -40,23 +40,23 @@ const CandidateSearch: React.FC = () => {
   };
 
   return (
-    <div className="flex flex-col items-center">
-      <h1 className="text-2xl font-bold mb-4">Candidate Search</h1>
+    <div >
+      <h1 >Candidate Search</h1>
       {candidates.length === 0 ? (
-        <p className="text-lg font-semibold">No more candidates to review.</p>
+        <p>No more candidates to review.</p>
       ) : currentCandidate ? (
         <CandidateCard candidate={currentCandidate} />
       ) : null}
-      <div className="flex mt-4 space-x-4">
+      <div>
         <button
           onClick={handleSave}
-          className="bg-green-500 text-white px-4 py-2 rounded"
+          
         >
           +
         </button>
         <button
           onClick={handleNext}
-          className="bg-red-500 text-white px-4 py-2 rounded"
+          
         >
           -
         </button>
@@ -64,12 +64,12 @@ const CandidateSearch: React.FC = () => {
 
       {/* Display saved candidates */}
       {savedCandidates.length > 0 && (
-        <div className="mt-6">
-          <h2 className="text-xl font-semibold">Saved Candidates</h2>
-          <ul className="mt-4">
+        <div>
+          <h2>Saved Candidates</h2>
+          <ul>
             {savedCandidates.map((candidate, index) => (
-              <li key={index} className="mb-2">
-                <div className="border p-2 rounded shadow-md">
+              <li key={index}>
+                <div>
                   <p>{candidate.name}</p>
                   <p>{candidate.bio}</p>
                   {/* Display other candidate information here */}
