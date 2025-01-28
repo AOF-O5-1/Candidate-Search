@@ -1,24 +1,26 @@
 import React, { useEffect, useState } from 'react';
-import { searchGithub } from '../api/API';
+import { searchGithub, searchGithubUser } from '../api/API';
 import CandidateCard from '../components/CandidateCard';
 import { Candidate } from '../interfaces/CandidateInterface';
 
 const CandidateSearch: React.FC = () => {
   const [candidates, setCandidates] = useState<Candidate[]>([]);
   const [currentCandidate, setCurrentCandidate] = useState<Candidate | null>(null);
-  const [savedCandidates, setSavedCandidates] = useState<Candidate[]>(
+  const [, setSavedCandidates] = useState<Candidate[]>(
     JSON.parse(localStorage.getItem('savedCandidates') || '[]')
   );
 
   useEffect(() => {
     const fetchCandidates = async () => {
-      const data: Candidate[] = await searchGithub();
-      setCandidates(data);
-      setCurrentCandidate(data[0] || null);  // Guard against empty data
+      const users = await searchGithub();
+      if (users.length > 0) {
+        const detailedUser = await searchGithubUser(users[0].login);
+        setCurrentCandidate(detailedUser);
+      }
     };
+
     fetchCandidates();
   }, []);
-
   const handleSave = () => {
     if (currentCandidate) {
       setSavedCandidates(prevState => {
@@ -47,38 +49,22 @@ const CandidateSearch: React.FC = () => {
       ) : currentCandidate ? (
         <CandidateCard candidate={currentCandidate} />
       ) : null}
-      <div>
-        <button
-          onClick={handleSave}
-          
-        >
-          +
-        </button>
-        <button
-          onClick={handleNext}
-          
-        >
-          -
-        </button>
+      <div className="flex mt-6 space-x-8">
+      <button
+        onClick={handleSave}
+        className="bg-green-600 text-white w-14 h-14 flex items-center justify-center rounded-full text-3xl shadow-lg"
+      >
+        ➕
+      </button>
+      <button
+        onClick={handleNext}
+        className="bg-red-600 text-white w-14 h-14 flex items-center justify-center rounded-full text-3xl shadow-lg"
+      >
+        ➖
+      </button>
       </div>
 
-      {/* Display saved candidates */}
-      {savedCandidates.length > 0 && (
-        <div>
-          <h2>Saved Candidates</h2>
-          <ul>
-            {savedCandidates.map((candidate, index) => (
-              <li key={index}>
-                <div>
-                  <p>{candidate.name}</p>
-                  <p>{candidate.bio}</p>
-                  {/* Display other candidate information here */}
-                </div>
-              </li>
-            ))}
-          </ul>
-        </div>
-      )}
+      
     </div>
   );
 };

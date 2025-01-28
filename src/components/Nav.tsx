@@ -4,9 +4,7 @@ import { Link } from 'react-router-dom';
 const Nav: React.FC = () => {
   return (
     <nav>
-      <div>
-        <Link to="/">Home</Link>
-      </div>
+      <h1>Navigation</h1>
       <ul>
         <li>
           <Link to="/candidates">
