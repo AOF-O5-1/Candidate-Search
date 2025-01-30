@@ -43,10 +43,8 @@ const searchGithub = async () => {
   }
 };
 
-// Add a function to reset the lastUserId if needed
-const resetGithubSearch = () => {
-  lastUserId = null;
-};
+
+
 
   
   const searchGithubUser = async (username: string) => {
@@ -71,5 +69,5 @@ const resetGithubSearch = () => {
   };
   
   
-  export { searchGithub, searchGithubUser,resetGithubSearch };
+  export { searchGithub, searchGithubUser};
   
