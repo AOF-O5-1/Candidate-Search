@@ -11,23 +11,17 @@ Candidate Search is a web application that fetches and displays potential candid
 
 ## Installation
 
-1. Clone the repository:
-
-   ```sh
-   git clone https://github.com/your-username/candidate-search.git
-   cd candidate-search
-
-2. Install dependecies
+1. Install dependecies
 
 npm install
 
-3. Create a .env file and add your GitHub token:
+2. Create a .env file and add your GitHub token:
 
 VITE_GITHUB_TOKEN=your_github_personal_access_token
 
-4. Start the application 
+3. Start the application 
 
-npm run dev
+npm start
 
 ## Usage
 
@@ -42,7 +36,12 @@ npm run dev
 - React
 - TypeScript
 - GitHub API
-- vite
+- Vite
+
+## Deployed Link
+
+https://candidate-search-hpum.onrender.com
+
 
 ## License 
 
