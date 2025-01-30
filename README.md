@@ -1,50 +1,54 @@
-# React + TypeScript + Vite
+# Candidate Search
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Candidate Search is a web application that fetches and displays potential candidates using the GitHub API. Users can review, save, or reject candidates based on their profiles.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Fetches candidate profiles from GitHub API
+- Displays candidate details including name, location, email, company, and bio
+- Allows users to save or reject candidates
+- Loads additional candidates once the initial list is exhausted
 
-## Expanding the ESLint configuration
+## Installation
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+1. Clone the repository:
 
-- Configure the top-level `parserOptions` property like this:
+   ```sh
+   git clone https://github.com/your-username/candidate-search.git
+   cd candidate-search
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+2. Install dependecies
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+npm install
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+3. Create a .env file and add your GitHub token:
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+VITE_GITHUB_TOKEN=your_github_personal_access_token
+
+4. Start the application 
+
+npm run dev
+
+## Usage
+
+1. View candidate profiles.
+2. Click the (+) button to save a candidate.
+3. Click the (-) button to reject a candidate.
+4. Click the (load More Candidates) button to refresh candidates
+5. If all candidates are reviewed, new candidates will be fetched.
+
+## Technologies Used  
+
+- React
+- TypeScript
+- GitHub API
+- vite
+
+## License 
+
+This project is licensed under the MIT License.
+
+## Contact 
+
+GitHub: https://github.com/AOF-O5-1
+Email: marcusfajemisin@gmail.com
