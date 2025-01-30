@@ -1,11 +1,14 @@
 
+// Keep track of the last user ID seen
+let lastUserId: number | null = null;
 
 const searchGithub = async () => {
   try {
-    const start = Math.floor(Math.random() * 100000000) + 1;
+    // If there's no lastUserId, start with a random number, otherwise use the lastUserId
+    const start = lastUserId || Math.floor(Math.random() * 100000000) + 1;
 
     const response = await fetch(
-      `https://api.github.com/users?since=${start}&per_page=60`, // Fetch 60 users per request
+      `https://api.github.com/users?since=${start}&per_page=30`,
       {
         headers: {
           Authorization: `Bearer ${import.meta.env.VITE_GITHUB_TOKEN}`,
@@ -19,6 +22,11 @@ const searchGithub = async () => {
 
     const users = await response.json();
     console.log("Users List:", users);
+
+    // Update lastUserId with the ID of the last user in the response
+    if (users.length > 0) {
+      lastUserId = users[users.length - 1].id;
+    }
 
     // Fetch detailed user data for each user
     const detailedUsers = await Promise.all(
@@ -34,6 +42,12 @@ const searchGithub = async () => {
     return [];
   }
 };
+
+// Add a function to reset the lastUserId if needed
+const resetGithubSearch = () => {
+  lastUserId = null;
+};
+
   
   const searchGithubUser = async (username: string) => {
     try {
@@ -57,5 +71,5 @@ const searchGithub = async () => {
   };
   
   
-  export { searchGithub, searchGithubUser };
+  export { searchGithub, searchGithubUser,resetGithubSearch };
   

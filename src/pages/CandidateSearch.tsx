@@ -41,32 +41,44 @@ const CandidateSearch: React.FC = () => {
     });
   };
 
+  const loadMoreCandidates = async () => {
+    const newCandidates = await searchGithub();
+    // Update the candidates state with the new candidates
+    setCandidates(prevCandidates => [...prevCandidates, ...newCandidates]);
+  }
+
   return (
-    <div >
-      <h1 >Candidate Search</h1>
+    <div className="container mx-auto px-4">
+      <h1 className="text-2xl font-bold mb-4 text-center">Candidate Search</h1>
       {candidates.length === 0 ? (
-        <p>No more candidates to review.</p>
+        <p className="text-center text-gray-600">No more candidates to review.</p>
       ) : currentCandidate ? (
         <CandidateCard candidate={currentCandidate} />
       ) : null}
-      <div className="flex mt-6 space-x-8">
-      <button
-        onClick={handleSave}
-        className="bg-green-600 text-white w-14 h-14 flex items-center justify-center rounded-full text-3xl shadow-lg"
-      >
-        ➕
-      </button>
-      <button
-        onClick={handleNext}
-        className="bg-red-600 text-white w-14 h-14 flex items-center justify-center rounded-full text-3xl shadow-lg"
-      >
-        ➖
-      </button>
-      </div>
-
       
+      <div className="flex justify-between items-center mt-4 max-w-md mx-auto">
+        <button
+          onClick={handleSave}
+          className="text-2xl bg-green-500 hover:bg-green-600 text-white w-12 h-12 rounded-full"
+        >
+          ➕
+        </button>
+  
+        <button
+          onClick={loadMoreCandidates}
+          className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded"
+        >
+          Load More Candidates
+        </button>
+  
+        <button
+          onClick={handleNext}
+          className="text-2xl bg-red-500 hover:bg-red-600 text-white w-12 h-12 rounded-full"
+        >
+          ➖
+        </button>
+      </div>
     </div>
-  );
-};
+  );};
 
 export default CandidateSearch;

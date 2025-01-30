@@ -1,9 +1,10 @@
 import React from 'react';
 import { Candidate } from '../interfaces/CandidateInterface';
 
+
 const CandidateCard: React.FC<{ candidate: Candidate }> = ({ candidate }) => {
   return (
-    <div>
+    <div >
       <img src={candidate.avatar_url} alt="Avatar" />
       <p><strong>Name:</strong> {candidate.name || 'N/A'}</p>
       <p><strong>Username:</strong> {candidate.login}</p>
